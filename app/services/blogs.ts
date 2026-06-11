@@ -42,3 +42,7 @@ export const incrementBlogLikes = (id: number) => {
         blog.likes += 1;
     }
 }
+
+export const filterBlogsByTitle = (filter: string) => {
+    return blogs.filter(blog => blog.title.toLowerCase().includes(filter.toLowerCase()));
+}
