@@ -1,7 +1,8 @@
 "use server"
 
 import { redirect } from "next/navigation"
-import { addBlogs } from "../services/blogs"
+import { addBlogs, incrementBlogLikes } from "../services/blogs"
+import { revalidatePath } from "next/cache"
 
 export const createBlog = async (formData: FormData) => {
     const title = formData.get("title") as string;
@@ -10,5 +11,14 @@ export const createBlog = async (formData: FormData) => {
     const likes = parseInt(formData.get("likes") as string, 10);
 
     addBlogs(title, author, url, likes);
+    revalidatePath("/blogs");
     redirect("/blogs");
+}
+
+export const likeBlog = async (formData: FormData) => {
+    const id = Number(formData.get("id"));
+    incrementBlogLikes(id);
+    revalidatePath("/blogs");
+    revalidatePath(`/blogs/${id}`);
+
 }
