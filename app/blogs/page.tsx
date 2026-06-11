@@ -3,11 +3,12 @@ import Link from "next/link";
 
 const Blogs = () => {
     const blogs = getBlogs();
+    const sortedBlogs = [...blogs].sort((a, b) => b.likes - a.likes);
     return (
         <div>
             <h2>Blogs</h2>
             <ul>
-                {blogs.map(blog => (
+                {sortedBlogs.map(blog => (
                     <li key={blog.id}>
                         <Link href={`/blogs/${blog.id}`}>
                             {blog.title}
