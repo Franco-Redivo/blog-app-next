@@ -4,9 +4,7 @@ import Link from "next/link";
 
 const Blogs = async ({ searchParams, }: {searchParams: Promise<{ filter?: string }>}) => {
     const { filter } = await searchParams;
-    const blogs = getBlogs();
-    const filteredBlogs = filter ? filterBlogsByTitle(filter) : blogs;
-    const sortedBlogs = [...filteredBlogs].sort((a, b) => b.likes - a.likes);
+    const blogs = filter ? await filterBlogsByTitle(filter) : await getBlogs();
 
     return (
         <div>
@@ -19,7 +17,7 @@ const Blogs = async ({ searchParams, }: {searchParams: Promise<{ filter?: string
             </div>
             <div>
                 <ul>
-                    {sortedBlogs.map(blog => (
+                    {blogs.map(blog => (
                         <li key={blog.id}>
                             <Link href={`/blogs/${blog.id}`}>
                                 <h3>{blog.title}</h3>
