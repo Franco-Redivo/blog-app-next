@@ -15,6 +15,20 @@
       "when": 1781299866399,
       "tag": "0001_closed_red_shift",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1781375380271,
+      "tag": "0002_nostalgic_proudstar",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1781375626923,
+      "tag": "0003_overconfident_lady_deathstrike",
+      "breakpoints": true
     }
   ]
 }
