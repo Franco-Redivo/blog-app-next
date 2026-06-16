@@ -5,7 +5,7 @@ import { redirect } from "next/navigation"
 import { addBlogs, incrementBlogLikes} from "../services/blogs"
 import { revalidatePath } from "next/cache"
 
-export const createBlog = async (formData: FormData) => {
+export const createBlog = async (prevState: {error: string}, formData: FormData) => {
     const session = await auth();
     if( !session) {
         redirect("/login");
@@ -14,6 +14,10 @@ export const createBlog = async (formData: FormData) => {
     const author = formData.get("author") as string;
     const url = formData.get("url") as string;
     const likes = parseInt(formData.get("likes") as string, 10);
+
+    if (!title || title.length < 5) return { error: "title must be at least 5 characters long", values:{title, author, url, likes} };
+    if (!author || author.length < 5) return { error: "author must be at least 5 characters long", values:{title, author, url, likes}};
+    if (!url || url.length < 5) return { error: "url must be at least 5 characters long",values:{title, author, url, likes} };
 
     await addBlogs(title, author, url, likes);
     revalidatePath("/blogs");
