@@ -8,12 +8,10 @@ export default function Notification() {
     if(!message) return null;
 
     const style : React.CSSProperties = {
-        padding: "10px 16px",
-        marginBottom: "10px",
-        borderRadius: "4px",
-        color: "white",
         backgroundColor: type === "success" ? "#16a34a" : "#dc2626",
     }
 
-    return <div style={style}>{message}</div>
+    return <div className="p-4 mb-4 rounded text-white" style={style}>
+        {message}
+    </div>
 }
