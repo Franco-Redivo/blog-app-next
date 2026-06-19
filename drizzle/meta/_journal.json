@@ -36,6 +36,13 @@
       "when": 1781554833437,
       "tag": "0004_volatile_crusher_hogan",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1781823697561,
+      "tag": "0005_high_devos",
+      "breakpoints": true
     }
   ]
 }
