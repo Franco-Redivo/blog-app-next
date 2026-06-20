@@ -43,6 +43,13 @@
       "when": 1781823697561,
       "tag": "0005_high_devos",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1781980485732,
+      "tag": "0006_crazy_bloodstrike",
+      "breakpoints": true
     }
   ]
 }
