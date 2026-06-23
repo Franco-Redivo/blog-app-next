@@ -1,9 +1,19 @@
 import { db } from "../../db";
 import { users, blogs } from "../../db/schema";
 import { eq } from "drizzle-orm"
+import  bcrypt from "bcryptjs";
 
 export const getUsers = async () => {
     return db.query.users.findMany();
+}
+
+export const addUser = async (username: string, name: string, password: string) => {
+    const passwordHash = await bcrypt.hash(password, 10);
+    return db.insert(users).values({
+        username,
+        name,
+        passwordHash
+    }).returning();
 }
 
 export const getUserWithBlogs = async (username: string) => {
@@ -36,4 +46,9 @@ export const getUserWithToken = async (token: string) => {
     return db.query.users.findFirst({
         where: eq(users.token, token)
     });
+}
+
+export const dropAllUsers = async () => {
+    await db.delete(blogs).execute();
+    await db.delete(users).execute();
 }

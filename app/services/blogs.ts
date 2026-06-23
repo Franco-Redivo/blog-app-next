@@ -114,3 +114,8 @@ export const getReadingListEntry = async (blogId: number) => {
         where: sql`${readingList.userId} = ${user.id} AND ${readingList.blogId} = ${blogId}`
     });
 }
+
+export const dropAllBlogs = async () => {
+    await db.delete(readingList).execute();
+    await db.delete(blogs).execute();
+}
